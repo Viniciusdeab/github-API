@@ -1,7 +1,7 @@
 document.getElementById('btn-search').addEventListener('click', ()=>{
     const userName = document.getElementById('input-search').value;
     getUserProfile(userName);
-})
+});
 
 
 async function user(userName){
@@ -17,5 +17,5 @@ function getUserProfile(userName){
                             <p>${userData.bio ?? "Não possui bio cadastrada 😥"}</p>
                         </div>`;
         document.querySelector(".profile-data").innerHTML = userInfo;              
-    })
+    });
 }
