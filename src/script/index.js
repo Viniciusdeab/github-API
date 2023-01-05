@@ -19,6 +19,11 @@ async function user(userName){
     return await response.json();
 }
 
+async function repos(userName){
+    const response = await fetch(`https://api.github.com/users/${userName}/repos`);
+    return await response.json();
+}
+
 function getUserProfile(userName){
     user(userName).then(userData =>{
         let userInfo = `<img src="${userData.avatar_url} alt="Foto do perfil de usuário" />
