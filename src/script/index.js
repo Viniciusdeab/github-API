@@ -26,11 +26,28 @@ async function repos(userName){
 
 function getUserProfile(userName){
     user(userName).then(userData =>{
-        let userInfo = `<img src="${userData.avatar_url} alt="Foto do perfil de usuário" />
-                        <div class="data">
-                            <h1>${userData.name ?? "Não possui nome cadastrado 😥"}</h1>
-                            <p>${userData.bio ?? "Não possui bio cadastrada 😥"}</p>
+        let userInfo = `<div class="info">
+                            <img src="${userData.avatar_url} alt="Foto do perfil de usuário" />
+                            <div class="data">
+                                <h1>${userData.name ?? "Não possui nome cadastrado 😥"}</h1>
+                                <p>${userData.bio ?? "Não possui bio cadastrada 😥"}</p>
+                            </div>
                         </div>`;
-        document.querySelector(".profile-data").innerHTML = userInfo;              
+        document.querySelector(".profile-data").innerHTML = userInfo; 
+        
+        getUserRepositories(userName);
     });
-}
+};
+
+function getUserRepositories(userName){
+    repos(userName).then(reposData =>{
+        let repositoriesItens = "";
+        reposData.forEach(repo => {
+            repositoriesItens += `<li><a href="${repo.html_url}" target="_blank">${repo.name}</a></li>`;
+        });
+        document.querySelector(".profile-data").innerHTML += `<div class="repositories section">
+                                                                    <h2>Repositórios</h2>
+                                                                    <ul>${repositoriesItens}</ul>      
+                                                                </div>`
+    });
+};
