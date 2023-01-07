@@ -1,4 +1,4 @@
 # Page gitHub search 
-Aplicação buscar na API de cartas do baralho para retornar uma carta aleatória do baralho usando HTML e JS.
+Aplicação buscar na API do github  o usuário e seus repositórios utilizando HTML,CSS e JS.
 
 [Acesse a pagina](https://viniciusdeab.github.io/github-API/);
