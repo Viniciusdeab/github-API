@@ -1,5 +1,5 @@
-import { user } from "src/script/services/user.js";
-import { repositories } from "src/script/services/user.js";
+import { user } from "/src/script/services/user.js";
+import { repositories } from "/src/script/services/repositories.js";
 
 document.getElementById('btn-search').addEventListener('click', ()=>{
     const userName = document.getElementById('input-search').value;
