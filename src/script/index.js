@@ -6,6 +6,10 @@ import { screen } from "./object/screen.js";
 
 document.getElementById('btn-search').addEventListener('click', ()=>{
     const userName = document.getElementById('input-search').value;
+    if(userName.length === 0){
+        alert('Preencha o campo de busca com o nome do usuário do GitHub');
+        return
+    }
     getUserData(userName);
 });
 
@@ -15,6 +19,10 @@ document.getElementById('input-search').addEventListener('keyup', (e)=>{
     const isEnterKeyPressed = key === 13;
 
     if(isEnterKeyPressed){
+        if(userName.length === 0){
+            alert('Preencha o campo de busca com o nome do usuário do GitHub');
+            return
+        }
         getUserData(userName);
     }
 });
