@@ -6,12 +6,16 @@ import { screen } from "./object/screen.js";
 
 document.getElementById('btn-search').addEventListener('click', ()=>{
     const userName = document.getElementById('input-search').value;
-    if(userName.length === 0){
-        alert('Preencha o campo de busca com o nome do usuário do GitHub');
-        return
-    }
+    if(validateEmptyInput(userName)) return;
     getUserData(userName);
 });
+
+function validateEmptyInput(userName){
+    if(userName.length === 0){
+        alert('Preencha o campo de busca com o nome do usuário do GitHub');
+        return true;
+    }
+}
 
 document.getElementById('input-search').addEventListener('keyup', (e)=>{
     const userName = e.target.value;
@@ -19,10 +23,7 @@ document.getElementById('input-search').addEventListener('keyup', (e)=>{
     const isEnterKeyPressed = key === 13;
 
     if(isEnterKeyPressed){
-        if(userName.length === 0){
-            alert('Preencha o campo de busca com o nome do usuário do GitHub');
-            return
-        }
+        if(validateEmptyInput(userName)) return;
         getUserData(userName);
     }
 });
@@ -30,6 +31,11 @@ document.getElementById('input-search').addEventListener('keyup', (e)=>{
 async function getUserData(userName){
 
     const userResponse =  await getUser(userName);
+
+    if(userResponse.message === "Not Found"){
+
+    }
+    
     const repositoriesResponse =  await getRepositories(userName);
 
     user.setInfo(userResponse);
